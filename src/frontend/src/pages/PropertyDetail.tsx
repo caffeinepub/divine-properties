@@ -27,11 +27,12 @@ export default function PropertyDetail() {
 
   return (
     <div className="max-w-[700px] space-y-6">
-      <div className="flex gap-3">
+      <div className="flex gap-3 flex-wrap">
         <button
           type="button"
           onClick={() => navigate(`/properties/${id}/edit`)}
           className="flex items-center gap-2 px-4 py-2 rounded-md border border-border text-sm font-medium hover:bg-muted transition-colors"
+          data-ocid="property_detail.edit_button"
         >
           <Pencil size={15} /> Edit
         </button>
@@ -40,6 +41,7 @@ export default function PropertyDetail() {
           onClick={() => printPropertyPDF(property)}
           className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold transition-all hover:opacity-90"
           style={{ background: "oklch(0.72 0.13 75)", color: "oklch(0.1 0 0)" }}
+          data-ocid="property_detail.primary_button"
         >
           <Download size={15} /> Download PDF
         </button>
@@ -91,15 +93,15 @@ function Section({
       >
         <h3 className="text-sm font-semibold text-foreground">{title}</h3>
       </div>
-      <div className="p-5 space-y-3">{children}</div>
+      <div className="p-4 sm:p-5 space-y-3">{children}</div>
     </div>
   );
 }
 
 function Row({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex gap-2">
-      <span className="text-sm text-muted-foreground w-40 flex-shrink-0">
+    <div className="flex flex-col sm:flex-row gap-1 sm:gap-2">
+      <span className="text-sm text-muted-foreground sm:w-40 sm:flex-shrink-0">
         {label}
       </span>
       <span className="text-sm font-medium text-foreground">{value}</span>

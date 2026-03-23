@@ -127,9 +127,7 @@ export default function InventoryForm() {
               </span>
               <svg
                 aria-hidden="true"
-                className={`w-4 h-4 shrink-0 transition-transform text-muted-foreground ${
-                  dropdownOpen ? "rotate-180" : ""
-                }`}
+                className={`w-4 h-4 shrink-0 transition-transform text-muted-foreground ${dropdownOpen ? "rotate-180" : ""}`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -163,9 +161,7 @@ export default function InventoryForm() {
                             setPropertyIdStr(val);
                             setDropdownOpen(false);
                           }}
-                          className={`w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors ${
-                            isSelected ? "font-semibold" : "text-foreground"
-                          }`}
+                          className={`w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors ${isSelected ? "font-semibold" : "text-foreground"}`}
                           style={
                             isSelected ? { color: "oklch(0.72 0.13 75)" } : {}
                           }
@@ -194,74 +190,78 @@ export default function InventoryForm() {
         </div>
       </FormSection>
       <FormSection title="Inventory Items">
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr
-                style={{ background: "oklch(0.95 0 0)" }}
-                className="border-b border-border"
-              >
-                {["Item", "Qty", "Condition", "Remarks"].map((h) => (
-                  <th
-                    key={h}
-                    className="text-left px-3 py-2 text-xs font-semibold text-muted-foreground uppercase"
-                  >
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((item, i) => (
+        <div className="overflow-x-auto -mx-4 sm:mx-0">
+          <div className="min-w-[500px] px-4 sm:px-0">
+            <table className="w-full text-sm">
+              <thead>
                 <tr
-                  key={item.itemName}
-                  className="border-b border-border last:border-0"
+                  style={{ background: "oklch(0.95 0 0)" }}
+                  className="border-b border-border"
                 >
-                  <td className="px-3 py-2 font-medium text-foreground">
-                    {item.itemName}
-                  </td>
-                  <td className="px-3 py-2">
-                    <input
-                      type="number"
-                      min="0"
-                      value={String(item.qty)}
-                      onChange={(e) =>
-                        updateItem(
-                          i,
-                          "qty",
-                          e.target.value ? BigInt(e.target.value) : 0n,
-                        )
-                      }
-                      className="h-8 w-16 px-2 text-sm border border-border rounded bg-background outline-none focus:border-gold"
-                    />
-                  </td>
-                  <td className="px-3 py-2">
-                    <input
-                      type="text"
-                      value={item.condition}
-                      onChange={(e) =>
-                        updateItem(i, "condition", e.target.value)
-                      }
-                      className="h-8 px-2 text-sm border border-border rounded bg-background outline-none focus:border-gold w-full"
-                      placeholder="Good/Fair/Poor"
-                    />
-                  </td>
-                  <td className="px-3 py-2">
-                    <input
-                      type="text"
-                      value={item.remarks}
-                      onChange={(e) => updateItem(i, "remarks", e.target.value)}
-                      className="h-8 px-2 text-sm border border-border rounded bg-background outline-none focus:border-gold w-full"
-                    />
-                  </td>
+                  {["Item", "Qty", "Condition", "Remarks"].map((h) => (
+                    <th
+                      key={h}
+                      className="text-left px-3 py-2 text-xs font-semibold text-muted-foreground uppercase"
+                    >
+                      {h}
+                    </th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {items.map((item, i) => (
+                  <tr
+                    key={item.itemName}
+                    className="border-b border-border last:border-0"
+                  >
+                    <td className="px-3 py-2 font-medium text-foreground">
+                      {item.itemName}
+                    </td>
+                    <td className="px-3 py-2">
+                      <input
+                        type="number"
+                        min="0"
+                        value={String(item.qty)}
+                        onChange={(e) =>
+                          updateItem(
+                            i,
+                            "qty",
+                            e.target.value ? BigInt(e.target.value) : 0n,
+                          )
+                        }
+                        className="h-8 w-16 px-2 text-sm border border-border rounded bg-background outline-none focus:border-gold"
+                      />
+                    </td>
+                    <td className="px-3 py-2">
+                      <input
+                        type="text"
+                        value={item.condition}
+                        onChange={(e) =>
+                          updateItem(i, "condition", e.target.value)
+                        }
+                        className="h-8 px-2 text-sm border border-border rounded bg-background outline-none focus:border-gold w-full"
+                        placeholder="Good/Fair/Poor"
+                      />
+                    </td>
+                    <td className="px-3 py-2">
+                      <input
+                        type="text"
+                        value={item.remarks}
+                        onChange={(e) =>
+                          updateItem(i, "remarks", e.target.value)
+                        }
+                        className="h-8 px-2 text-sm border border-border rounded bg-background outline-none focus:border-gold w-full"
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </FormSection>
       <FormSection title="Parties">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex flex-col gap-1">
             <label htmlFor={ownerNameId} className="text-sm font-medium">
               Owner Name

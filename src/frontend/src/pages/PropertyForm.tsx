@@ -68,7 +68,7 @@ export default function PropertyForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-[700px] space-y-8">
+    <form onSubmit={handleSubmit} className="max-w-[700px] space-y-8 px-0">
       <FormSection title="Owner Details">
         <Field
           label="Owner Name"
@@ -100,7 +100,7 @@ export default function PropertyForm() {
           value={form.title}
           onChange={(v) => set("title", v)}
         />
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <SelectField
             label="Property Type"
             id="propertyType"
@@ -131,7 +131,7 @@ export default function PropertyForm() {
           value={form.city}
           onChange={(v) => set("city", v)}
         />
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Field
             label="Expected Price"
             id="expectedPrice"
@@ -156,7 +156,7 @@ export default function PropertyForm() {
         </div>
       </FormSection>
       <FormSection title="Agreement">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Field
             label="Sale Commission %"
             id="saleCommission"

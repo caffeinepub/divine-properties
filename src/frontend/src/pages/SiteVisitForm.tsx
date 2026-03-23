@@ -83,23 +83,25 @@ export default function SiteVisitForm() {
         />
       </FormSection>
       <FormSection title="Requirement">
-        <SelectField
-          label="Requirement Type"
-          id="reqType"
-          required
-          value={form.requirementType}
-          onChange={(v) => set("requirementType", v)}
-          options={["Buy", "Rent", "Lease"]}
-        />
-        <Field
-          label="Budget"
-          id="budget"
-          type="number"
-          value={form.budget === 0n ? "" : String(form.budget)}
-          onChange={(v) =>
-            set("budget", v ? BigInt(Math.round(Number.parseFloat(v))) : 0n)
-          }
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <SelectField
+            label="Requirement Type"
+            id="reqType"
+            required
+            value={form.requirementType}
+            onChange={(v) => set("requirementType", v)}
+            options={["Buy", "Rent", "Lease"]}
+          />
+          <Field
+            label="Budget"
+            id="budget"
+            type="number"
+            value={form.budget === 0n ? "" : String(form.budget)}
+            onChange={(v) =>
+              set("budget", v ? BigInt(Math.round(Number.parseFloat(v))) : 0n)
+            }
+          />
+        </div>
       </FormSection>
       <FormSection title="Visit Info">
         <div className="flex flex-col gap-1">

@@ -1,4 +1,5 @@
 import { Toaster } from "@/components/ui/sonner";
+import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
@@ -6,6 +7,7 @@ import InventoryForm from "./pages/InventoryForm";
 import InventoryList from "./pages/InventoryList";
 import InvoiceForm from "./pages/InvoiceForm";
 import InvoiceList from "./pages/InvoiceList";
+import Login from "./pages/Login";
 import PropertyDetail from "./pages/PropertyDetail";
 import PropertyForm from "./pages/PropertyForm";
 import PropertyList from "./pages/PropertyList";
@@ -13,11 +15,34 @@ import SiteVisitForm from "./pages/SiteVisitForm";
 import SiteVisitList from "./pages/SiteVisitList";
 
 export default function App() {
+  const [authed, setAuthed] = useState(
+    () => sessionStorage.getItem("dp_auth") === "1",
+  );
+
+  if (!authed) {
+    return (
+      <>
+        <Toaster position="top-right" />
+        <Login onLogin={() => setAuthed(true)} />
+      </>
+    );
+  }
+
   return (
     <BrowserRouter>
       <Toaster position="top-right" />
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route
+          path="/"
+          element={
+            <Layout
+              onLogout={() => {
+                sessionStorage.removeItem("dp_auth");
+                setAuthed(false);
+              }}
+            />
+          }
+        >
           <Route index element={<Dashboard />} />
           <Route path="properties" element={<PropertyList />} />
           <Route path="properties/add" element={<PropertyForm />} />

@@ -80,7 +80,7 @@ export default function InvoiceForm() {
   return (
     <form onSubmit={handleSubmit} className="max-w-[700px] space-y-8">
       <FormSection title="Invoice Info">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex flex-col gap-1">
             <label htmlFor={invoiceNoId} className="text-sm font-medium">
               Invoice No
@@ -166,7 +166,7 @@ export default function InvoiceForm() {
         />
       </FormSection>
       <FormSection title="Payment">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <SelectField
             label="Payment Mode"
             id="paymentMode"
